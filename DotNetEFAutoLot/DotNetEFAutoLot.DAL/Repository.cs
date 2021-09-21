@@ -28,5 +28,25 @@ namespace DotNetEFAutoLot.DAL
                 }
             }
         }
+
+        public void AddNewRecords(IEnumerable<Car> carsToAdd)
+        {
+            using (var context = new AutoLotEntities())
+            {
+                context.Cars.AddRange(carsToAdd);
+                context.SaveChanges();
+            }
+        }
+
+        public void PrintAllInventory()
+        {
+            using (var context = new AutoLotEntities())
+            {
+                foreach (var car in context.Cars)
+                {
+                    Console.WriteLine(car);
+                }
+            }
+        }
     }
 }

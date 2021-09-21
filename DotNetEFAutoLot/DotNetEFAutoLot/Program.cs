@@ -14,10 +14,11 @@ namespace DotNetEFAutoLot
         {
             Console.WriteLine("Start");
 
-            Console.WriteLine("Add new car record");
             var repo = new Repository();
-            var carId = repo.AddNewRecord(new Car { Make = "Yugo2", Color = "Brown2", CarNickName = "Brownie2" });
-            Console.WriteLine($"Added with id ={carId}");
+            //var carId = repo.AddNewRecord(new Car { Make = "Yugo2", Color = "Brown2", CarNickName = "Brownie2" });
+            //Console.WriteLine($"Added with id ={carId}");
+
+            repo.PrintAllInventory();
 
             Console.ReadLine();
         }
