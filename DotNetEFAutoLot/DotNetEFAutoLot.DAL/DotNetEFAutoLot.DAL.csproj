@@ -50,10 +50,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PartialEntities\CarPartial.cs" />
     <Compile Include="EF\AutoLotEntities.cs" />
     <Compile Include="EF\CreditRisk.cs" />
     <Compile Include="EF\Customer.cs" />
-    <Compile Include="EF\Inventory.cs" />
+    <Compile Include="EF\Car.cs" />
     <Compile Include="EF\Order.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -49,5 +49,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DotNetEFAutoLot.DAL\DotNetEFAutoLot.DAL.csproj">
+      <Project>{b348c68d-45f6-4013-8728-1080453f23e5}</Project>
+      <Name>DotNetEFAutoLot.DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
