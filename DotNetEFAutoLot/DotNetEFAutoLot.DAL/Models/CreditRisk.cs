@@ -1,4 +1,4 @@
-namespace DotNetEFAutoLot.DAL.EF
+namespace DotNetEFAutoLot.DAL.Models
 {
     using System;
     using System.Collections.Generic;

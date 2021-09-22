@@ -1,4 +1,4 @@
-namespace DotNetEFAutoLot.DAL.EF
+namespace DotNetEFAutoLot.DAL.Models
 {
     using System;
     using System.Collections.Generic;
@@ -16,6 +16,6 @@ namespace DotNetEFAutoLot.DAL.EF
 
         public virtual Customer Customer { get; set; }
 
-        public virtual Car Car { get; set; }
+        public virtual Inventory Inventory { get; set; }
     }
 }

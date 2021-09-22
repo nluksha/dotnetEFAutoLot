@@ -4,18 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DotNetEFAutoLot.DAL.EF;
+using DotNetEFAutoLot.DAL.Models;
 
 namespace DotNetEFAutoLot.DAL
 {
     public class Repository
     {
-        public int AddNewRecord(Car car)
+        public int AddNewRecord(Inventory car)
         {
             using (var context = new AutoLotEntities())
             {
                 try
                 {
-                    context.Cars.Add(car);
+                    context.Inventory.Add(car);
                     context.SaveChanges();
 
                     return car.CarId;
@@ -29,11 +30,11 @@ namespace DotNetEFAutoLot.DAL
             }
         }
 
-        public void AddNewRecords(IEnumerable<Car> carsToAdd)
+        public void AddNewRecords(IEnumerable<Inventory> carsToAdd)
         {
             using (var context = new AutoLotEntities())
             {
-                context.Cars.AddRange(carsToAdd);
+                context.Inventory.AddRange(carsToAdd);
                 context.SaveChanges();
             }
         }
@@ -42,7 +43,7 @@ namespace DotNetEFAutoLot.DAL
         {
             using (var context = new AutoLotEntities())
             {
-                foreach (var car in context.Cars)
+                foreach (var car in context.Inventory)
                 {
                     Console.WriteLine(car);
                 }
@@ -53,11 +54,11 @@ namespace DotNetEFAutoLot.DAL
         {
             using (var context = new AutoLotEntities())
             {
-                Car carToDelete = context.Cars.Find(carId);
+                Inventory carToDelete = context.Inventory.Find(carId);
 
                 if (carToDelete != null)
                 {
-                    context.Cars.Remove(carToDelete);
+                    context.Inventory.Remove(carToDelete);
                     context.SaveChanges();
                 }
             }
@@ -67,7 +68,7 @@ namespace DotNetEFAutoLot.DAL
         {
             using (var context = new AutoLotEntities())
             {
-                Car carToUpdate = context.Cars.Find(carId);
+                Inventory carToUpdate = context.Inventory.Find(carId);
 
                 if (carToUpdate != null)
                 {

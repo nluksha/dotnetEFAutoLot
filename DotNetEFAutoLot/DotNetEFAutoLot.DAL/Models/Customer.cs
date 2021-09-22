@@ -1,4 +1,4 @@
-namespace DotNetEFAutoLot.DAL.EF
+namespace DotNetEFAutoLot.DAL.Models
 {
     using System;
     using System.Collections.Generic;
@@ -6,28 +6,26 @@ namespace DotNetEFAutoLot.DAL.EF
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Inventory")]
-    public partial class Car
+    public partial class Customer
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Car()
+        public Customer()
         {
-            Orders = new HashSet<Order>();
         }
 
         [Key]
-        public int CarId { get; set; }
+        public int CustId { get; set; }
 
         [StringLength(50)]
-        public string Make { get; set; }
+        public string FirstName { get; set; }
 
         [StringLength(50)]
-        public string Color { get; set; }
+        public string LastName { get; set; }
 
-        [StringLength(50), Column("PetName")]
-        public string CarNickName { get; set; }
+        [NotMapped]
+        public string FullName => FirstName + LastName;
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Order> Orders { get; set; } = new HashSet<Order>();
     }
 }

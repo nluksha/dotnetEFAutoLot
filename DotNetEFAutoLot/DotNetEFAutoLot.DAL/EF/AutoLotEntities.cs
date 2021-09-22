@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
+using DotNetEFAutoLot.DAL.Models;
 
 namespace DotNetEFAutoLot.DAL.EF
 {
@@ -14,21 +15,21 @@ namespace DotNetEFAutoLot.DAL.EF
 
         public virtual DbSet<CreditRisk> CreditRisks { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
-        public virtual DbSet<Car> Cars { get; set; }
+        public virtual DbSet<Inventory> Inventory { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Car>()
+            modelBuilder.Entity<Inventory>()
                 .Property(e => e.Make)
                 .IsFixedLength();
 
-            modelBuilder.Entity<Car>()
+            modelBuilder.Entity<Inventory>()
                 .Property(e => e.Color)
                 .IsFixedLength();
 
-            modelBuilder.Entity<Car>()
-                .Property(e => e.CarNickName)
+            modelBuilder.Entity<Inventory>()
+                .Property(e => e.PetName)
                 .IsFixedLength();
         }
     }
