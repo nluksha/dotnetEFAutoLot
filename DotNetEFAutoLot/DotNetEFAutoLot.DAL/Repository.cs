@@ -48,5 +48,36 @@ namespace DotNetEFAutoLot.DAL
                 }
             }
         }
+
+        public void RemoveRecordCar(int carId)
+        {
+            using (var context = new AutoLotEntities())
+            {
+                Car carToDelete = context.Cars.Find(carId);
+
+                if (carToDelete != null)
+                {
+                    context.Cars.Remove(carToDelete);
+                    context.SaveChanges();
+                }
+            }
+        }
+
+        public void UpdateRecord(int carId)
+        {
+            using (var context = new AutoLotEntities())
+            {
+                Car carToUpdate = context.Cars.Find(carId);
+
+                if (carToUpdate != null)
+                {
+                    Console.WriteLine(context.Entry(carToUpdate).State);
+                    carToUpdate.Color = "Blue";
+                    Console.WriteLine(context.Entry(carToUpdate).State);
+
+                    context.SaveChanges();
+                }
+            }
+        }
     }
 }

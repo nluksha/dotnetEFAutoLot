@@ -18,7 +18,12 @@ namespace DotNetEFAutoLot
             //var carId = repo.AddNewRecord(new Car { Make = "Yugo2", Color = "Brown2", CarNickName = "Brownie2" });
             //Console.WriteLine($"Added with id ={carId}");
 
+            // repo.RemoveRecordCar(11);
+            // repo.UpdateRecord(10);
+
             repo.PrintAllInventory();
+
+
 
             Console.ReadLine();
         }
