@@ -5,18 +5,16 @@ namespace DotNetEFAutoLot.DAL.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using DotNetEFAutoLot.DAL.Models.Base;
 
     [Table("Inventory")]
-    public partial class Inventory
+    public partial class Inventory: EntityBase
 
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Inventory()
         {
         }
-
-        [Key]
-        public int CarId { get; set; }
 
         [StringLength(50)]
         public string Make { get; set; }

@@ -24,7 +24,7 @@ namespace DotNetEFAutoLot
             // repo.UpdateRecord(10);
             //repo.PrintAllInventory();
 
-            Database.SetInitializer(new MyDataInitializer());
+            // Database.SetInitializer(new MyDataInitializer());
             Console.WriteLine("*** ADO.NET EF Code First *** \n");
 
             using (var context = new AutoLotEntities())

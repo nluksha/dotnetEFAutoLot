@@ -20,6 +20,8 @@ namespace DotNetEFAutoLot.DAL.EF
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            Database.SetInitializer<AutoLotEntities>(null);
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

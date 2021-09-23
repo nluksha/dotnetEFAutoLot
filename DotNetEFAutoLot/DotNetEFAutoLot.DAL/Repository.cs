@@ -19,7 +19,7 @@ namespace DotNetEFAutoLot.DAL
                     context.Inventory.Add(car);
                     context.SaveChanges();
 
-                    return car.CarId;
+                    return car.Id;
                 }
                 catch (Exception ex)
                 {

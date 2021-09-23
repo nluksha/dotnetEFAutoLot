@@ -13,8 +13,6 @@ namespace DotNetEFAutoLot.DAL.EF
     {
         protected override void Seed(AutoLotEntities context)
         {
-            // base.Seed(context);
-
             var customers = new List<Customer>
             {
                 new Customer { FirstName = "Dave", LastName = "Brenner"},
@@ -46,11 +44,11 @@ namespace DotNetEFAutoLot.DAL.EF
                 new Order{Inventory = cars[2], Customer = customers[2]},
                 new Order{Inventory = cars[3], Customer = customers[3]},
             };
-            orders.ForEach(x => context.Orders.AddOrUpdate(c => new { c.CarId, c.CustId }, x));
+            orders.ForEach(x => context.Orders.AddOrUpdate(c => new { c.CarId, c.CunstomerId }, x));
 
             context.CreditRisks.AddOrUpdate(x => new { x.FirstName, x.LastName }, new CreditRisk
             {
-                CustId = customers[4].CustId,
+                Id = customers[4].Id,
                 FirstName = customers[4].FirstName,
                 LastName = customers[4].LastName
             });
