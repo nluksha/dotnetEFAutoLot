@@ -20,17 +20,6 @@ namespace DotNetEFAutoLot.DAL.EF
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Inventory>()
-                .Property(e => e.Make)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Inventory>()
-                .Property(e => e.Color)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Inventory>()
-                .Property(e => e.PetName)
-                .IsFixedLength();
         }
     }
 }
