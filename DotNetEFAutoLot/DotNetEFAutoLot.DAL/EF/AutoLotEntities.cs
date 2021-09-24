@@ -5,6 +5,8 @@ using System.Data.Entity.Infrastructure.Interception;
 using System.Linq;
 using DotNetEFAutoLot.DAL.Models;
 using DotNetEFAutoLot.DAL.Interception;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Core.Objects;
 
 namespace DotNetEFAutoLot.DAL.EF
 {
@@ -20,6 +22,10 @@ namespace DotNetEFAutoLot.DAL.EF
 
             Logger.StartLogging();
             DbInterception.Add(Logger);
+
+            var context = (this as IObjectContextAdapter).ObjectContext;
+            context.ObjectMaterialized += OnObjectMaterialized;
+            context.SavingChanges += OnSavingChanges;
         }
 
         public virtual DbSet<CreditRisk> CreditRisks { get; set; }
@@ -31,6 +37,15 @@ namespace DotNetEFAutoLot.DAL.EF
         {
             Database.SetInitializer<AutoLotEntities>(null);
             base.OnModelCreating(modelBuilder);
+        }
+
+        private void OnSavingChanges(object sender, EventArgs eventArgs)
+        {
+            // You may reject changes
+        }
+
+        private void OnObjectMaterialized(object sender, ObjectMaterializedEventArgs eventArgs)
+        {
         }
 
         protected override void Dispose(bool disposing)
