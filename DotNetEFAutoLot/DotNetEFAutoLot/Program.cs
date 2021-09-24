@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using DotNetEFAutoLot.DAL;
 using DotNetEFAutoLot.DAL.EF;
 using DotNetEFAutoLot.DAL.Models;
+using DotNetEFAutoLot.DAL.Repositories;
 
 namespace DotNetEFAutoLot
 {
@@ -27,9 +28,9 @@ namespace DotNetEFAutoLot
             // Database.SetInitializer(new MyDataInitializer());
             Console.WriteLine("*** ADO.NET EF Code First *** \n");
 
-            using (var context = new AutoLotEntities())
+            using (var repo = new InventoryRepository())
             {
-                foreach (var c in context.Inventory)
+                foreach (var c in repo.GetAll())
                 {
                     Console.WriteLine(c);
                 }

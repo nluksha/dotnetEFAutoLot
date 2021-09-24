@@ -3,6 +3,7 @@ using DotNetEFAutoLot.DAL.Models.Base;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,47 +26,68 @@ namespace DotNetEFAutoLot.DAL.Repositories
 
         public int Add(T entity)
         {
-            throw new NotImplementedException();
+            table.Add(entity);
+
+            return SaveChanges();
         }
 
         public int AddRange(IList<T> entities)
         {
-            throw new NotImplementedException();
+            table.AddRange(entities);
+
+            return SaveChanges();
         }
 
-        public int Delete(int id, byte[] timeStamp)
-        {
-            throw new NotImplementedException();
-        }
+        public int Delete(int id, byte[] timeStamp) => Delete(new T { Id = id, Timestamp = timeStamp });
 
         public int Delete(T entity)
         {
-            throw new NotImplementedException();
+            db.Entry(entity).State = EntityState.Deleted;
+
+            return SaveChanges();
         }
 
-        public List<T> ExecuteQuery(string sql)
-        {
-            throw new NotImplementedException();
-        }
+        public List<T> ExecuteQuery(string sql) => table.SqlQuery(sql).ToList();
 
-        public List<T> ExecuteQuery(string sql, object[] sqlParametersObjects)
-        {
-            throw new NotImplementedException();
-        }
+        public List<T> ExecuteQuery(string sql, object[] sqlParametersObjects) => table.SqlQuery(sql, sqlParametersObjects).ToList();
 
-        public List<T> GetAll()
-        {
-            throw new NotImplementedException();
-        }
+        public virtual List<T> GetAll() => table.ToList();
 
-        public T GetOne(int? id)
-        {
-            throw new NotImplementedException();
-        }
+        public T GetOne(int? id) => table.Find(id);
 
         public int Save(T entity)
         {
-            throw new NotImplementedException();
+            db.Entry(entity).State = EntityState.Modified;
+
+            return SaveChanges();
+        }
+
+        internal int SaveChanges()
+        {
+            try
+            {
+                return db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                Console.WriteLine($"DbUpdateConcurrencyException {ex.Message}");
+                throw;
+            }
+            catch (DbUpdateException ex)
+            {
+                Console.WriteLine($"DbUpdateException {ex.Message}");
+                throw;
+            }
+            catch (CommitFailedException ex)
+            {
+                Console.WriteLine($"CommitFailedException {ex.Message}");
+                throw;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception {ex.Message}");
+                throw;
+            }
         }
 
         protected virtual void Dispose(bool disposing)
