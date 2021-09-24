@@ -1,8 +1,10 @@
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure.Interception;
 using System.Linq;
 using DotNetEFAutoLot.DAL.Models;
+using DotNetEFAutoLot.DAL.Interception;
 
 namespace DotNetEFAutoLot.DAL.EF
 {
@@ -11,6 +13,7 @@ namespace DotNetEFAutoLot.DAL.EF
         public AutoLotEntities()
             : base("name=AutoLotEntities")
         {
+            DbInterception.Add(new ConsoleWriterInterceptor());
         }
 
         public virtual DbSet<CreditRisk> CreditRisks { get; set; }

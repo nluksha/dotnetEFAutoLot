@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EF\MyDataInitializer.cs" />
+    <Compile Include="Interception\ConsoleWriterInterceptor.cs" />
     <Compile Include="Migrations\202109230717460_Initial.cs" />
     <Compile Include="Migrations\202109230717460_Initial.Designer.cs">
       <DependentUpon>202109230717460_Initial.cs</DependentUpon>
