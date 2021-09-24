@@ -39,5 +39,44 @@ namespace DotNetEFAutoLot
             Console.WriteLine("Done!");
             Console.ReadLine();
         }
+
+        private static void AddNewRecords(Inventory car)
+        {
+            using (var repo  = new InventoryRepository())
+            {
+                repo.Add(car);
+            }
+        }
+
+        private static void UpdateRecord(int carId)
+        {
+            using (var repo = new InventoryRepository())
+            {
+                var carToUpdate = repo.GetOne(carId);
+                if(carToUpdate == null)
+                {
+                    return;
+                }
+
+                carToUpdate.Color = "Blue";
+                repo.Save(carToUpdate);
+            }
+        }
+
+        private static void RemoveRecordByCar(Inventory car)
+        {
+            using (var repo = new InventoryRepository())
+            {
+                repo.Delete(car);
+            }
+        }
+
+        private static void RemoveRecordById(int carId, byte[] timeStamp)
+        {
+            using (var repo = new InventoryRepository())
+            {
+                repo.Delete(carId, timeStamp);
+            }
+        }
     }
 }
