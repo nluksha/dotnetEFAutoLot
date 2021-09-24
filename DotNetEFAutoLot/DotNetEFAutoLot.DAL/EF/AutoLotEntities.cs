@@ -10,10 +10,16 @@ namespace DotNetEFAutoLot.DAL.EF
 {
     public partial class AutoLotEntities : DbContext
     {
+        static readonly DatabaseLogger Logger = new DatabaseLogger("sqllog.txt", true);
+
         public AutoLotEntities()
             : base("name=AutoLotEntities")
         {
-            DbInterception.Add(new ConsoleWriterInterceptor());
+            // My custom
+            //DbInterception.Add(new ConsoleWriterInterceptor());
+
+            Logger.StartLogging();
+            DbInterception.Add(Logger);
         }
 
         public virtual DbSet<CreditRisk> CreditRisks { get; set; }
@@ -25,6 +31,14 @@ namespace DotNetEFAutoLot.DAL.EF
         {
             Database.SetInitializer<AutoLotEntities>(null);
             base.OnModelCreating(modelBuilder);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            DbInterception.Remove(Logger);
+            Logger.StopLogging();
+
+            base.Dispose(disposing);
         }
     }
 }
